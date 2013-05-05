@@ -24,7 +24,6 @@ describe("last", function() {
 
 });
 
-/*
 
 describe("first", function() {
   it("should be able to pull out the first element of an array", function() {
@@ -60,6 +59,8 @@ describe("each", function() {
     ]);
   });
 });
+
+/*
 
 describe("indexOf", function() {
 

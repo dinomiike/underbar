@@ -5,17 +5,55 @@ var _ = {};
   // Return an array of the last n elements of an array. If n is undefined,
   // return just the last element.
   _.last = function(array, n) {
+    //console.log(arguments);
+    if (typeof(n) === "number") {
+      var i, result = [];
+      for (i = array.length - 1; n > 0 && i > -1; n -= 1) {
+        result.unshift(array[i]);
+        i -= 1;
+      }
+      return result;
+    } else {
+      return array[array.length - 1];
+    }
   };
 
   // Like last, but for the first elements
   _.first = function(array, n) {
     // TIP: you can often re-use similar functions in clever ways, like so:
-    return _.last(array.reverse(), n);
+    //return _.last(array.reverse(), n);
+    if (typeof(n) === "number") {
+      var i, result = [];
+      for (i = 0; n > 0 && i < array.length; i += 1) {
+        result.push(array[i]);
+        n -= 1;
+      }
+      return result;
+    } else {
+      return array[0];
+    }
   };
 
 
   // Call iterator(value, key, collection) for each element of collection
   _.each = function(obj, iterator) {
+    console.log(obj);
+    console.log(iterator);
+    var i;
+    if (Array.isArray(obj)) {
+      console.log("This is an array, for (i=0)");
+      var i;
+      for (i = 0; i < obj.length; i += 1) {
+        iterator(obj[i]);
+      }
+    } else {
+      console.log("This is an object for (in)");
+      var key;
+      for (key in obj) {
+        iterator(obj[key]);
+      }
+    }
+    return obj;
   };
 
   /*
