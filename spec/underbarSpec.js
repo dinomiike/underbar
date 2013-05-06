@@ -60,8 +60,6 @@ describe("each", function() {
   });
 });
 
-/*
-
 describe("indexOf", function() {
 
   it("should be able to compute indexOf even when the native function is undefined", function() {
@@ -90,6 +88,8 @@ describe("indexOf", function() {
     expect(_.indexOf(numbers, 40)).to.be(1);
   });
 });
+
+/*
 
 describe("filter", function() {
   it("should return all even numbers in an array", function() {

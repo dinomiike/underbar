@@ -37,20 +37,21 @@ var _ = {};
 
   // Call iterator(value, key, collection) for each element of collection
   _.each = function(obj, iterator) {
-    console.log(obj);
-    console.log(iterator);
+    //console.log(obj);
+    //console.log(iterator);
     var i;
     if (Array.isArray(obj)) {
-      console.log("This is an array, for (i=0)");
+      //console.log("This is an array, for (i=0)");
       var i;
       for (i = 0; i < obj.length; i += 1) {
-        iterator(obj[i]);
+        iterator(obj[i], i, obj);
       }
     } else {
-      console.log("This is an object for (in)");
+      //console.log("This is an object for (in)");
+      // This isn't exactly working just yet but arrays are good
       var key;
       for (key in obj) {
-        iterator(obj[key]);
+        iterator(obj[key], i, obj);
       }
     }
     return obj;
