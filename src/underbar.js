@@ -48,10 +48,12 @@ var _ = {};
       }
     } else {
       //console.log("This is an object for (in)");
-      // This isn't exactly working just yet but arrays are good
       var key;
+      //console.log(obj);
       for (key in obj) {
-        iterator(obj[key], i, obj);
+        //console.log("--Inside the loop");
+        //console.log("----" + obj[key] + ", " + key + ", " + obj);
+        iterator(obj[key], key, obj);
       }
     }
     return obj;
@@ -67,10 +69,12 @@ var _ = {};
   // is not present in the array.
   _.indexOf = function(array, target){
     var result = -1;
+    //console.log("array: " + array);
+    //console.log("target: " + target);
 
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
-        result = index;
+        result = parseInt(index);
       }
     });
 
