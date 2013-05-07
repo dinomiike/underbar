@@ -107,8 +107,6 @@ describe("filter", function() {
   });
 });
 
-/*
-
 describe("reject", function() {
   it("should reject all even numbers", function() {
     var isEven = function(num) { return num % 2 === 0; };
@@ -122,6 +120,8 @@ describe("reject", function() {
     expect(evens).to.eql([2, 4, 6]);
   });
 });
+
+/*
 
 describe("uniq", function() {
   it("should return all unique values contained in an unsorted array", function() {

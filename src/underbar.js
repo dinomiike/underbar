@@ -83,6 +83,13 @@ var _ = {};
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+    var i;
+    for (i = 0; i < collection.length; i += 1) {
+      if (!iterator(collection[i])) {
+        collection.splice(i, 1);
+      }
+    }
+    return collection;
   };
 
   // Return all elements of an array that don't pass a truth test.
