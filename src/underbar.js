@@ -96,6 +96,20 @@ var _ = {};
   _.reject = function(collection, iterator) {
     // TIP: see if you can re-use _.select() here, without simply
     // copying code in and modifying it
+    // (Note: _.select seems to be the old name for _.filter)
+
+    // Going to have to come back to this idea...
+    //return _.filter(collection, function(value, index, list) {
+    //  return !iterator.call(value, index, list);
+    //});
+
+    var i;
+    for (i = 0; i < collection.length; i += 1) {
+      if (iterator(collection[i])) {
+        collection.splice(i, 1);
+      }
+    }
+    return collection;
   };
 
   // Produce a duplicate-free version of the array.
