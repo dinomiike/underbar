@@ -104,6 +104,11 @@ var _ = {};
 
   // Return the results of applying an iterator to each element.
   _.map = function(array, iterator) {
+    var results = [];
+    _.each (array, function(value, index, list) {
+      results[results.length] = iterator(value, index, list);
+    });
+    return results;
   };
 
   /*
@@ -123,6 +128,19 @@ var _ = {};
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName) {
+    /*var args = list.slice.call(arguments);
+    var otherArgs = list.slice.call(arguments, 2);
+    console.log(args);
+    console.log(otherArgs);
+    console.log(typeof methodName);*/
+    var args = list.slice.call(arguments);
+    return _.map(list, function (value) {
+      if (typeof(methodName) == "function") {
+        return (methodName).call(value,args);
+      } else {
+        return value[methodName].call(value,args);
+      }
+    });
   };
 
   // Reduces an array or object to a single value by repetitively calling
