@@ -89,8 +89,6 @@ describe("indexOf", function() {
   });
 });
 
-/*
-
 describe("filter", function() {
   it("should return all even numbers in an array", function() {
     var isEven = function(num) {
@@ -140,8 +138,6 @@ describe("uniq", function() {
     expect(_.uniq(args)).to.eql([1, 2, 3, 4]);
   });
 });
-
-*/
 
 describe("map", function() {
   it("should apply a function to every value in an array", function() {
