@@ -114,6 +114,13 @@ var _ = {};
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var i, check = [];
+    for (i = 0; i < array.length; i += 1) {
+      if (check.indexOf(array[i]) < 0) {
+        check.push(array[i]);
+      }
+    }
+    return check;
   };
 
 
@@ -125,6 +132,13 @@ var _ = {};
 
   // Return the results of applying an iterator to each element.
   _.map = function(array, iterator) {
+    var results = [];
+    // results.length at this point is 0
+    _.each(array, function(value, index, list) {
+      // As this each iterator is invoked, it adds to the results array and the results.length increases by one, making the following line insert the value at the end (new max index+1) of the array
+      results[results.length] = iterator(value, index, list);
+    });
+    return results;
   };
 
   /*
@@ -137,13 +151,26 @@ var _ = {};
   // a certain property in it. E.g. take an array of people and return
   // an array of just their ages
   _.pluck = function(obj, propertyName) {
-    return _.map(obj, function(value){
+    return _.map(obj, function(value) {
       return value[propertyName];
     });
   };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName) {
+    /*var args = list.slice.call(arguments);
+    var otherArgs = list.slice.call(arguments, 2);
+    console.log(args);
+    console.log(otherArgs);
+    console.log(typeof methodName);*/
+    var args = list.slice.call(arguments);
+    return _.map(list, function (value) {
+      if (typeof(methodName) == "function") {
+        return (methodName).call(value,args);
+      } else {
+        return value[methodName].call(value,args);
+      }
+    });
   };
 
   // Reduces an array or object to a single value by repetitively calling

@@ -121,8 +121,6 @@ describe("reject", function() {
   });
 });
 
-/*
-
 describe("uniq", function() {
   it("should return all unique values contained in an unsorted array", function() {
     var list = [1, 2, 1, 3, 1, 4];
@@ -186,6 +184,8 @@ describe("invoke with function reference", function() {
     expect(result[1]).to.eql([1, 2, 3]);
   });
 });
+
+/*
 
 describe("reduce", function() {
   it("should be able to sum up an array", function() {
