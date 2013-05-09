@@ -187,6 +187,14 @@ var _ = {};
   //   }, 0); // should be 6
   //
   _.reduce = function(obj, iterator, initialValue) {
+    var previousValue = initialValue || 0;
+    if (obj.length > 0) {
+      _.each(obj, function (item) {
+        //console.log(item)
+        previousValue = iterator(previousValue, item);
+      });
+    }
+    return previousValue;
   };
 
   // Determine if the array or object contains a given value (using `===`).

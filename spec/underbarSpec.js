@@ -185,8 +185,6 @@ describe("invoke with function reference", function() {
   });
 });
 
-/*
-
 describe("reduce", function() {
   it("should be able to sum up an array", function() {
     var callback = function(sum, num) {return sum + num; };
@@ -202,6 +200,8 @@ describe("reduce", function() {
   });
 
 });
+
+/*
 
 describe("contains", function() {
   it("should return true if a collection contains a user-specified value", function() {
