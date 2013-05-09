@@ -188,13 +188,23 @@ var _ = {};
   //
   _.reduce = function(obj, iterator, initialValue) {
     var previousValue = initialValue || 0;
-    if (obj.length > 0) {
-      _.each(obj, function (item) {
-        //console.log(item)
-        previousValue = iterator(previousValue, item);
-      });
-    }
-    return previousValue;
+    //if (Object.prototype.toString.call(obj) === '[object Array]') {
+      // Traverse array parameter
+      //if (obj.length > 0) {
+        _.each(obj, function (item) {
+          previousValue = iterator(previousValue, item);
+        });
+      //}
+      return previousValue;
+    //} else if (Object.prototype.toString.call(obj) === '[object Object]') {
+      // Traverse object parameter
+      //_.each(obj, function (item) {
+      //  console.log(item);
+      //});
+    //} else {
+      // This isn't a collection (object or array), returning false
+      //return false;
+    //}
   };
 
   // Determine if the array or object contains a given value (using `===`).

@@ -201,8 +201,6 @@ describe("reduce", function() {
 
 });
 
-/*
-
 describe("contains", function() {
   it("should return true if a collection contains a user-specified value", function() {
     expect(_.contains([1,2,3], 2)).to.equal(true);
@@ -213,6 +211,8 @@ describe("contains", function() {
     expect(_.contains([1,3,9], 2)).to.equal(false);
   });
 });
+
+/*
 
 describe("every", function() {
   var getValue = function(i) { return i; };
