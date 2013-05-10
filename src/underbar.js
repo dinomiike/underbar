@@ -188,23 +188,10 @@ var _ = {};
   //
   _.reduce = function(obj, iterator, initialValue) {
     var previousValue = initialValue || 0;
-    //if (Object.prototype.toString.call(obj) === '[object Array]') {
-      // Traverse array parameter
-      //if (obj.length > 0) {
-        _.each(obj, function (item) {
-          previousValue = iterator(previousValue, item);
-        });
-      //}
-      return previousValue;
-    //} else if (Object.prototype.toString.call(obj) === '[object Object]') {
-      // Traverse object parameter
-      //_.each(obj, function (item) {
-      //  console.log(item);
-      //});
-    //} else {
-      // This isn't a collection (object or array), returning false
-      //return false;
-    //}
+      _.each(obj, function (item) {
+        previousValue = iterator(previousValue, item);
+      });
+    return previousValue;
   };
 
   // Determine if the array or object contains a given value (using `===`).
@@ -223,6 +210,8 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
     // TIP: use reduce on this one!
+    //return _.reduce(obj, function (previous, item) {
+    //}, false);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is

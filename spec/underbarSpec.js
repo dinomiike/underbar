@@ -212,8 +212,6 @@ describe("contains", function() {
   });
 });
 
-/*
-
 describe("every", function() {
   var getValue = function(i) { return i; };
   var isEven = function(num) { return num % 2 === 0; };
@@ -250,6 +248,8 @@ describe("every", function() {
     expect(_.every([undefined, undefined, undefined], getValue)).to.equal(false);
   });
 });
+
+/*
 
 describe("any", function() {
   var nativeSome = Array.prototype.some;
