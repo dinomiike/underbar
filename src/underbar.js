@@ -223,12 +223,46 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
     // TIP: use reduce on this one!
+    var result;
+    return _.reduce(obj, function (previous, item) {
+      //console.log("previous: " + previous);
+      if (!previous) {
+        return false;
+      }
+      result = iterator(item);
+      //console.log("result: " + result);
+      // Force a result of 1 to be true and 0 to be false.
+      if (result === 1) {
+        result = true;
+      } else if (result == 0) {
+        result = false;
+      }
+      return result;
+    }, true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.any = function(obj, iterator) {
     // TIP: re-use every() here
+    if (obj.length < 0) {
+      var result;
+      return _.reduce(obj, function (previous, item) {
+        if (previous) {
+          return true;
+        }
+        result = iterator(item);
+        // Force a result of 1 to be true and 0 to be false.
+        if (result === 1) {
+          result = true;
+        } else if (result == 0) {
+          result = false;
+        }
+        return result;
+      });
+    } else {
+      return false;
+    }
   };
 
 

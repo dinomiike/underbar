@@ -212,8 +212,6 @@ describe("contains", function() {
   });
 });
 
-/*
-
 describe("every", function() {
   var getValue = function(i) { return i; };
   var isEven = function(num) { return num % 2 === 0; };
@@ -303,6 +301,8 @@ describe("any", function() {
     expect(_.any([0], passThrough)).to.equal(false);
   });
 });
+
+/*
 
 describe("extend", function() {
   it("should extend an object with the attributes of another", function() {
