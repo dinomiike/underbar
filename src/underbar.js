@@ -210,14 +210,50 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
     // TIP: use reduce on this one!
-    //return _.reduce(obj, function (previous, item) {
-    //}, false);
+    var result;
+    return _.reduce(obj, function (previous, item) {
+      if (!previous) {
+        return false;
+      }
+      result = iterator(item);
+      // Force a result of 1 to be true and 0 to be false.
+      if (result === 1) {
+        result = true;
+      } else if (result === 0) {
+        result = false;
+      }
+      return result;
+    }, true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.any = function(obj, iterator) {
     // TIP: re-use every() here
+    // Check for the presence of an iterator
+    if (typeof(iterator) === 'undefined') {
+      iterator = function (item) {
+        return item;
+      };
+    }
+    if (obj.length > 0) {
+      var result;
+      return _.reduce(obj, function (previous, item) {
+        if (previous) {
+          return true;
+        }
+        result = iterator(item);
+        // Force a result of 1 to be true and 0 to be false.
+        if (result === 1) {
+          result = true;
+        } else if (result === 0) {
+          result = false;
+        }
+        return result;
+      }, false);
+    } else {
+      return false;
+    }
   };
 
 
