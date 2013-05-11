@@ -334,8 +334,6 @@ describe("extend", function() {
   });
 });
 
-/*
-
 describe("defaults", function() {
   var result, options;
 
@@ -432,6 +430,8 @@ describe("shuffle", function() {
     expect(shuffled.sort()).to.eql(numbers);
   });
 });
+
+/*
 
 describe("sortBy", function() {
   it("should sort by age", function() {

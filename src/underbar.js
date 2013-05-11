@@ -274,11 +274,27 @@ var _ = {};
   //   }); // obj1 now contains key1, key2, key3 and bla
   //
   _.extend = function(obj) {
+    var params = Array.prototype.slice.call(arguments, 1), key;
+    _.each(params, function (expandoObject) {
+      for (key in expandoObject) {
+        obj[key] = expandoObject[key];
+      }
+    });
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var params = Array.prototype.slice.call(arguments, 1), key;
+    _.each(params, function (expandoObject) {
+      for (key in expandoObject) {
+        if (!obj.hasOwnProperty(key)) {
+          obj[key] = expandoObject[key];
+        }
+      }
+    });
+    return obj;
   };
 
 
@@ -300,7 +316,7 @@ var _ = {};
     return function(){
       if(!alreadyCalled){
         // TIP: .apply(this, arguments) is the standard way to pass on all of the
-        // infromation from one function call to another.
+        // information from one function call to another.
         result = func.apply(this, arguments);
         alreadyCalled = true;
       }
@@ -316,6 +332,7 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    return _.once(func);
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -325,6 +342,10 @@ var _ = {};
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var args = Array.prototype.slice.call(arguments, 2);
+    return setTimeout(function () {
+      return func.apply(null, args);
+    }, wait);
   };
 
 
@@ -332,8 +353,36 @@ var _ = {};
    * Advanced collection operations
    */
 
+  // Range (imported from underscore, since it seems to be required for the spec and it isn't included in the src)
+  _.range = function (start, stop, step) {
+    if (arguments.length <= 1) {
+      stop = start || 0;
+      start = 0;
+    }
+    step = arguments[2] || 1;
+
+    var len = Math.max(Math.ceil((stop - start) / step), 0);
+    var idx = 0;
+    var range = new Array(len);
+
+    while (idx < len) {
+      range[idx++] = start;
+      start += step;
+    }
+
+    return range;
+  };
+
   // Shuffle an array.
   _.shuffle = function(obj) {
+    var shuffled = [], random = 0, hold = '', max = obj.length - 1;
+    _.each(obj, function(item, index) {
+      random = Math.floor(Math.random() * max);
+      hold = obj[random];
+      obj[random] = obj[index];
+      obj[index] = hold;
+    });
+    return obj;
   };
 
   /* (End of pre-course curriculum) */
